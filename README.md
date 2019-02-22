@@ -134,10 +134,13 @@ Jawaban
 - Buat bash script
 
 today="$( date +"%H:%M %d-%m-%Y" )"
+
 jam="$( date +"%H" )"
 
 alpha=({a..z})
+
 encrypt=( "${alpha[@]:(-(26-$jam))}" )
+
 encrypt+=( "${alpha[@]:0:$jam}" )
 
 awk '{print}' /var/log/syslog | tr "${alpha[*]}" "${encrypt[*]}" > "$today".log
@@ -158,6 +161,6 @@ Jawaban
 
 awk '/cron/ || /CRON/,!/sudo/' /var/log/syslog | awk 'NF < 13 {print}' >> /home/test/modl1/logsoal5.log
 
-- Lau untuk crontabnya
+- Lalu untuk crontabnya
 
 2-30/6 * * * * /bin/bash /home/nama user/soal5.sh
