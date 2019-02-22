@@ -128,8 +128,23 @@ b. Hasilnya huruf b menjadi huruf n karena huruf n adalah huruf ke empat belas, 
 c. setelah huruf z akan kembali ke huruf a
 d. Backup file syslog setiap jam.
 e. dan buatkan juga bash script untuk dekripsinya.
+
 Jawaban
 
+- Buat bash script
+
+today="$( date +"%H:%M %d-%m-%Y" )"
+jam="$( date +"%H" )"
+
+alpha=({a..z})
+encrypt=( "${alpha[@]:(-(26-$jam))}" )
+encrypt+=( "${alpha[@]:0:$jam}" )
+
+awk '{print}' /var/log/syslog | tr "${alpha[*]}" "${encrypt[*]}" > "$today".log
+
+- Buat cronjob nya
+
+*/60 * * * * /bin/bash /home/test/soal4.sh
 
 5. Buatlah sebuah script bash untuk menyimpan record dalam syslog yang memenuhi kriteria berikut:
 a. Tidak mengandung string “sudo”, tetapi mengandung string “cron”, serta buatlah pencarian stringnya tidak bersifat case sensitive, sehingga huruf kapital atau tidak, tidak menjadi masalah.
