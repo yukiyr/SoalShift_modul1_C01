@@ -3,7 +3,6 @@
 today="$( date +"%H:%M %d-%m-%Y" )"
 jam="$( date +"%H" )"
 
-
 alpha=({a..z})
 encrypt=( "${alpha[@]:(-(26-$jam))}" )
 encrypt+=( "${alpha[@]:0:$jam}" )
