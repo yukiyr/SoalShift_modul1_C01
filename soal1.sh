@@ -3,7 +3,7 @@
 number=1
 for file in *.jpg
 do
-base64 -d "$file" | xxd -f > "foto"$number".jpg"
+base64 -d "$file" | xxd -r > "foto"$number".jpg"
 let number++
 done
 
