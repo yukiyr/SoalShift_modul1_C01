@@ -11,11 +11,11 @@ Jawaban
 
 #!/bin/bash
 
-number=1
-for file in *.jpg
+angka=1
+for gambar in /home/test/nature/*.jpg
 do
-base64 -d "$file" | xxd -f > "foto"$number".jpg"
-let number++
+base64 -d "$gambar" | xxd -r > /home/test/nature/"foto"$angka".jpg"
+let angka++
 done
 
 - Lalu crontabnya adalah
